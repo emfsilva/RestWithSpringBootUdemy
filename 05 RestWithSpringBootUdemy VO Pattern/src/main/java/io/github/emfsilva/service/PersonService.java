@@ -1,5 +1,7 @@
 package io.github.emfsilva.service;
 
+import io.github.emfsilva.converter.DozerConverter;
+import io.github.emfsilva.data.vo.PersonVO;
 import io.github.emfsilva.exception.ResourceNotFoundException;
 import io.github.emfsilva.data.model.Person;
 import io.github.emfsilva.repository.PersonRepository;
@@ -14,28 +16,33 @@ public class PersonService {
     @Autowired
     PersonRepository personRepository;
 
-    public Person create(Person person) {
-        return personRepository.save(person);
+    public PersonVO create(PersonVO person) {
+        var entity = DozerConverter.parseObject(person, Person.class);
+        var vo = DozerConverter.parseObject(personRepository.save(entity), PersonVO.class);
+        return vo;
     }
 
-    public Person update(Person person) {
-        Person entity = personRepository.findById(person.getId())
+    public PersonVO update(PersonVO person) {
+        var entity = personRepository.findById(person.getId())
                 .orElseThrow(() -> new ResourceNotFoundException("No records found this ID"));
 
         entity.setFirstName(person.getFirstName());
         entity.setLastName(person.getLastName());
         entity.setAddress(person.getAddress());
         entity.setGender(person.getGender());
-        return personRepository.save(entity);
+
+        var vo = DozerConverter.parseObject(personRepository.save(entity), PersonVO.class);
+        return vo;
     }
 
-    public List<Person> findAll() {
-        return personRepository.findAll();
+    public List<PersonVO> findAll() {
+        return DozerConverter.parseListObjects(personRepository.findAll(), PersonVO.class);
     }
 
-    public Person findById(Long id) {
-        return personRepository.findById(id)
+    public PersonVO findById(Long id) {
+        var entity =  personRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("No records found this ID"));
+        return DozerConverter.parseObject(entity, PersonVO.class);
     }
 
     public void delete(Long id) {

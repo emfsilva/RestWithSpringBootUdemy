@@ -32,7 +32,7 @@ public class PersonController {
 	}
 
 	@PutMapping
-	public PersonVO update(@RequestBody Person person) {
+	public PersonVO update(@RequestBody PersonVO person) {
 		return personService.update(person);
 	}
 
