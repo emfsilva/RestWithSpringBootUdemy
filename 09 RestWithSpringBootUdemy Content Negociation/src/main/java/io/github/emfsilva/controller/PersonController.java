@@ -42,5 +42,4 @@ public class PersonController {
 		personService.delete(id);
 		return ResponseEntity.ok().build();
 	}
-
 }
