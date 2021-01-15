@@ -42,22 +42,32 @@
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
 		</dependency>
 
+		<!-- for DOZER support -->
 		<dependency>
 			<groupId>com.github.dozermapper</groupId>
 			<artifactId>dozer-core</artifactId>
 			<version>6.4.1</version>
 		</dependency>
 
+		<!-- for MYSQL support -->
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
 		</dependency>
 
+		<!-- for flyway support -->
 		<dependency>
 			<groupId>org.flywaydb</groupId>
 			<artifactId>flyway-core</artifactId>
 		</dependency>
 
+		<!-- for YML support -->
+		<dependency>
+			<groupId>com.fasterxml.jackson.dataformat</groupId>
+			<artifactId>jackson-dataformat-yaml</artifactId>
+		</dependency>
+
+		<!-- for XML support -->
 		<dependency>
 			<groupId>com.fasterxml.jackson.dataformat</groupId>
 			<artifactId>jackson-dataformat-xml</artifactId>
